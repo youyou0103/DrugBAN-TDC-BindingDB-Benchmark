@@ -1,0 +1,5 @@
+setting,val_auc,test_auc,test_aupr
+BindingDB_random,0.9316,0.9186,0.7392
+BindingDB_cold_drug,0.8609,0.9173,0.6883
+BindingDB_scaffold,0.8758,0.8026,0.4984
+PD,0.9266,0.8967,0.8885
