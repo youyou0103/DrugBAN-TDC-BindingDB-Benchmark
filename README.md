@@ -1,82 +1,113 @@
-\# DrugBAN-TDC-BindingDB-Benchmark
+DrugBAN-TDC-BindingDB-Benchmark
 
+A benchmark-oriented reimplementation and adaptation of DrugBAN for drug–target interaction prediction under TDC-style BindingDB settings.
 
+Overview
 
-A benchmarked reimplementation of DrugBAN on TDC BindingDB datasets for drug-target interaction / affinity prediction.
-
-
-
-\## Project Overview
-
-This repository is built to demonstrate my work on deep learning based drug-target interaction prediction under standardized TDC benchmark settings.
-
-
+This repository is built to present my benchmark and application work based on the DrugBAN framework for drug–target interaction / affinity prediction.
 
 The current project includes experiments on:
 
-\- BindingDB random split
+BindingDB random split
+BindingDB cold-drug split
+BindingDB scaffold split
+PD-specific downstream evaluation
 
-\- BindingDB cold-drug split
+This repository is mainly intended to demonstrate:
 
-\- BindingDB scaffold split
+paper reproduction ability
+deep learning engineering ability
+split-based generalization analysis
+disease-oriented downstream validation
+Relation to the Official DrugBAN Repository
 
-\- PD-specific downstream dataset
+This project is based on the official DrugBAN implementation:
 
+Original paper:
+Interpretable bilinear attention network with domain adaptation improves drug–target prediction
+Official repository:
+https://github.com/peizhenbai/DrugBAN
 
+The original DrugBAN work was proposed by Bai et al. and published in Nature Machine Intelligence.
 
-\## Tech Stack
+Compared with the official implementation, this repository focuses on:
 
-\- Python
+standardized benchmark organization under my current experimental pipeline
+evaluation on BindingDB with multiple split settings
+downstream validation on a Parkinson’s disease (PD) dataset
+engineering-oriented result organization for reproduction and analysis
+My Contributions
 
-\- PyTorch
+My work in this repository mainly includes:
 
-\- TDC
+reorganizing and adapting the DrugBAN framework for my current TDC-style BindingDB benchmark setting
+conducting experiments under random, cold-drug, and scaffold split settings
+performing downstream validation on a PD-specific dataset
+summarizing benchmark results and generalization performance under different evaluation protocols
+organizing the project into a reproducible and presentation-oriented repository for engineering demonstration
+Main Results
+Setting	Val AUC	Test AUC	Test AUPR
+BindingDB_random	0.9316	0.9186	0.7392
+BindingDB_cold_drug	0.8609	0.9173	0.6883
+BindingDB_scaffold	0.8758	0.8026	0.4984
+PD	0.9266	0.8967	0.8885
+Split Understanding
+Random split reflects standard i.i.d. evaluation performance.
+Cold-drug split evaluates generalization to unseen compounds.
+Scaffold split is more challenging because it evaluates generalization across novel molecular scaffolds.
+PD is used as a downstream disease-oriented validation scenario.
+Environment
 
-\- RDKit
+The current implementation is based on:
 
-\- NumPy / Pandas / Scikit-learn
+Python 3.8
+PyTorch 1.7.1
+DGL 0.7.1
+DGLLife 0.2.8
+RDKit
+NumPy / Pandas / Scikit-learn
+YAML-based configuration
 
+Please refer to requirements.txt for the main dependencies.
 
+How to Run
+Install dependencies: pip install -r requirements.txt
+Check experiment configurations under: configs/
+Run training / evaluation: python main.py
+Repository Structure
+main.py: main training / evaluation entry
+trainer.py: training and evaluation pipeline
+models.py: model definitions
+ban.py: bilinear attention related modules
+dataloader.py: dataset loading and preprocessing
+utils.py: utility functions
+configs.py: configuration helper
+configs/: YAML experiment configuration files
+results/: summarized benchmark results
+Notes
 
-\## Main Results
+This repository is not intended as a strict numerical reproduction of the original DrugBAN paper under its exact original experimental setup.
 
+Instead, this repository focuses on:
 
+benchmark adaptation under my current data pipeline
+engineering-oriented reproduction and organization
+split-based performance comparison
+downstream disease-oriented validation
+License and Attribution
 
-| Setting | Val AUC | Test AUC | Test AUPR |
+This repository includes code adapted from the official DrugBAN implementation.
 
-|---|---:|---:|---:|
+The original DrugBAN repository is released under the MIT License.
+Please retain the original license text and copyright notice in this repository.
 
-| BindingDB\_random | 0.9316 | 0.9186 | 0.7392 |
+Acknowledgement
 
-| BindingDB\_cold\_drug | 0.8609 | 0.9173 | 0.6883 |
+This work is based on the official DrugBAN implementation and its corresponding paper.
 
-| BindingDB\_scaffold | 0.8758 | 0.8026 | 0.4984 |
+If you find the original DrugBAN work useful, please cite:
 
-| PD | 0.9266 | 0.8967 | 0.8885 |
-
-
-
-\## Split Understanding
-
-\- Random split reflects standard i.i.d. evaluation performance.
-
-\- Cold-drug split focuses on generalization to unseen compounds.
-
-\- Scaffold split is more challenging because it evaluates generalization across novel molecular scaffolds.
-
-\- The PD dataset is used for disease-oriented downstream validation.
-
-
-
-\## Repository Structure
-
-\- `README.md`: project description
-
-\- `results/metrics\_summary.csv`: main benchmark results
-
-
-
-\## Note
-
-This repository focuses on standardized benchmarking and engineering demonstration under the TDC pipeline, rather than strict numerical reproduction of the original paper under its exact original setup.
-
+Bai, P., Miljković, F., John, B. and Lu, H.
+Interpretable bilinear attention network with domain adaptation improves drug-target prediction.
+Nature Machine Intelligence (2023).
+DOI: 10.1038/s42256-022-00605-1
